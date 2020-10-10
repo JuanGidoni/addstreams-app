@@ -1,2 +1,18 @@
-# addstreams-app
-Add streamers to check if they are online or not. Plus check more information about them.
+# Add Streams App
+
+In this React Web App, you can add streamers to your list and check their information.
+Check if they are online or not. And more functionalities.
+
+## test on your localhost
+
+`npm install`
+
+`npm start`
+
+---- 10/10
+
+* [x] Add/Delete Streamer to the list.
+* [x] Login request (to get token for access New Twitch Api)
+* [x] Request Streamer Stats (working on. only in components states & localStorage)
+
+
