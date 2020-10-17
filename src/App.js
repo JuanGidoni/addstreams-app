@@ -17,10 +17,18 @@ function App({logged, token}) {
   const [active, setActive] = useState(true);
   const [newLogged, setnewLogged] = useState(logged);
   const [newToken, setNewToken] = useState(token);
+  const [userName, setUserName] = useState('');
+  const [id, setId] = useState('');
+
 
     // RUN ONCE 
     useEffect(() => {
-      getStreams()
+      getStreams();
+      if(localStorage.getItem('logindata')){
+        let logindata = localStorage.getItem('logindata');
+        logindata = JSON.parse(logindata);
+        setUserName(logindata.login);
+      }
     },[]);
 
     useEffect( () => {
@@ -82,7 +90,7 @@ function App({logged, token}) {
         return (
           <div className="container-fluid App">
             <div className="row">
-            <Header streams={streams} filterStreams={filterStreams} status={status} newLogged={newLogged} setnewLogged={setnewLogged} newToken={newToken} />
+            <Header streams={streams} filterStreams={filterStreams} status={status} newLogged={newLogged} setnewLogged={setnewLogged} newToken={newToken} user={userName} />
             <div className="col-12 col-md-12 col-lg-6 text-center bg-white"> 
             <div className="d-flex flex-column justify-content-center align-items-center">
             <Form 
@@ -97,14 +105,18 @@ function App({logged, token}) {
             </div>
             </div>
             <div className="col-12 col-md-12 col-lg-6 streamBox pt-5 pt-md-0 bg-white h-100">
-            <h2 className="text-center input-stream text-reacstream">stream List</h2>
+            <h2 className="text-center input-stream text-reacstream">Streamers List</h2>
             <StreamList 
             filterStreams={filterStreams} 
             setStreams={setStreams} 
             streams={streams}
             setStreamsInfo={setStreamsInfo}
             streamsInfo={streamsInfo}
-            newToken={newToken} />
+            newToken={newToken} 
+            idUser={id}
+            setIdUser={setId}
+            />
+            
             </div>
             </div>
             <Footer />

@@ -14,7 +14,7 @@ export default function Form({input, setInput, streams, setStreams, setStatus, a
         let inputL = input.length
         if(inputL >= 4){
             setStreams([
-                ...streams,{username: input, checkstats: false,id: Math.random()*1000,},
+                ...streams,{username: input, checkstats: false,id: Math.random()*1000, checkfollows: false},
             ]);
             btn.placeholder = 'Insert twitch username';
             btn.className = 'input-todo';

@@ -1,8 +1,19 @@
 import React from 'react'
-const Header = ({streams,newLogged, setnewLogged, newToken}) => {
+const Header = ({streams,newLogged, setnewLogged, newToken,user}) => {
   const logOut = () => {
     setnewLogged(false);
-    localStorage.removeItem('logged');
+    if(localStorage.getItem('streamsInfo')){
+      localStorage.removeItem('streamsInfo');
+    }
+    if(localStorage.getItem('streams')){
+      localStorage.removeItem('streams');
+    }
+    if(localStorage.getItem('logindata')){
+      localStorage.removeItem('logindata');
+    }
+    if(localStorage.getItem('logged')){
+      localStorage.removeItem('logged');
+    }
     window.location.href="/";
   }
     return(
@@ -15,7 +26,8 @@ const Header = ({streams,newLogged, setnewLogged, newToken}) => {
             </li>
           </ul>
           <ul className="navbar-nav ml-auto nav-flex-icons">
-            <li className="nav-item d-flex flex-row justify-content-center">
+            <li className="nav-item d-flex flex-row justify-content-center align-items-center">
+              <p className="text-white m-0 p-0 mr-2">Welcome, {user}</p>
               <button className="nav-link waves-effect waves-light btn text-white bg-reacTodo mr-1 p-1 md-p-0 cursor-none">
                   <span id="totalTodo" className="mr-1">{streams.length}</span>
                 <i className="fas fa-user"></i>

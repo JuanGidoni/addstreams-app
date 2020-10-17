@@ -16,6 +16,12 @@ Check if they are online or not. And more functionalities.
 * [x] Request Streamer Stats (working on. only in components states & localStorage)
 
 ---- 0.2
+
 * [x] Display streamer stats (username, broadcaster type, total views)
+
+---- 0.3
+
+* [x] Now when you click for streamer data, you get 0.2 & total followers.
+* [x] Improve the CSS of Streamers List
 
 

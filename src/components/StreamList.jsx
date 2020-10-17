@@ -1,6 +1,6 @@
 import React from 'react'
 import Stream from './actions/Stream'
-const StreamList = ({streams, setStreams, filterStreams, streamsInfo, setStreamsInfo,newToken}) => {
+const StreamList = ({streams, setStreams, filterStreams, streamsInfo, setStreamsInfo,newToken,idUser, setIdUser}) => {
     
     return(
         <div className="todo-container text-center mb-5">
@@ -18,7 +18,9 @@ const StreamList = ({streams, setStreams, filterStreams, streamsInfo, setStreams
                     stream={stream}
                     streamsInfo={streamsInfo}
                     setStreamsInfo={setStreamsInfo}
-                    newToken={newToken} />
+                    newToken={newToken}
+                    idUser={idUser}
+                    setIdUser={setIdUser} />
                 ))}
             </ul>
         </div>
