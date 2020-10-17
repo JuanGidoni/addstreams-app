@@ -9,10 +9,13 @@ Check if they are online or not. And more functionalities.
 
 `npm start`
 
----- 10/10
+---- 0.1
 
 * [x] Add/Delete Streamer to the list.
 * [x] Login request (to get token for access New Twitch Api)
 * [x] Request Streamer Stats (working on. only in components states & localStorage)
+
+---- 0.2
+* [x] Display streamer stats (username, broadcaster type, total views)
 
 
