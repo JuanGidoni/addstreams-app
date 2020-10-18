@@ -24,4 +24,8 @@ Check if they are online or not. And more functionalities.
 * [x] Now when you click for streamer data, you get 0.2 & total followers.
 * [x] Improve the CSS of Streamers List
 
+----- 0.31
+
+* [x] Fixes an error when total followers don't show.
+* [x] Coming soon, check if a streamer is live.
 

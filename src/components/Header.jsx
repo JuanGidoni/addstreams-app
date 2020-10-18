@@ -14,6 +14,9 @@ const Header = ({streams,newLogged, setnewLogged, newToken,user}) => {
     if(localStorage.getItem('logged')){
       localStorage.removeItem('logged');
     }
+    if(localStorage.getItem('followers')){
+      localStorage.removeItem('followers');
+    }
     window.location.href="/";
   }
     return(

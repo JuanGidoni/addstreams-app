@@ -5,6 +5,11 @@ export default function Form({input, setInput, streams, setStreams, setStatus, a
     const inputChange = (e) => {
         setInput(e.target.value);
     }
+     // Function to capitalize first letter
+     function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     const SubmitForm = (e) => {
         let btn = document.getElementById('input-todo');
         let alertbox = document.getElementById('alert');
@@ -14,7 +19,7 @@ export default function Form({input, setInput, streams, setStreams, setStatus, a
         let inputL = input.length
         if(inputL >= 4){
             setStreams([
-                ...streams,{username: input, checkstats: false,id: Math.random()*1000, checkfollows: false},
+                ...streams,{username: capitalizeFirstLetter(input), checkstats: false,id: Math.random()*1000, checkfollows: false},
             ]);
             btn.placeholder = 'Insert twitch username';
             btn.className = 'input-todo';

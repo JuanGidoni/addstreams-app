@@ -11,43 +11,58 @@ import axios from 'axios';
 const queryString = require('query-string');
 let logged = '';
 let token = '';
-if(window.location.hash){
-  const parsed = queryString.parse(window.location.hash);
-  if(parsed.access_token){
-    // ask for the user logged data
-    async function getUserData(){
-      try {
-        const response = await axios.get(`https://id.twitch.tv/oauth2/validate`, {
-                  headers: {
-                      'Authorization' : `Bearer ${parsed.access_token}`,
-                      'Content-Type' : 'application/json',
-                }
-              });        
-        let json = JSON.stringify(response.data);
-        // store login data
-        localStorage.setItem('logindata', json);
-      } catch (error) {
-        console.log(error);
+
+
+      if(window.location.hash){
+        const parsed = queryString.parse(window.location.hash);
+        if(parsed.access_token){
+          // ask for the user logged data
+          async function getUserData(){
+            try {
+              const response = await axios.get(`https://id.twitch.tv/oauth2/validate`, {
+                        headers: {
+                            'Authorization' : `Bearer ${parsed.access_token}`,
+                            'Content-Type' : 'application/json',
+                      }
+                    });        
+              let json = JSON.stringify(response.data);
+              // store login data
+              localStorage.setItem('logindata', json);
+            } catch (error) {
+              console.log(error);
+            }
+          }
+          async function getTotalData(){
+            try{
+              const user = await getUserData();
+              return user;
+
+            } catch(error){
+              console.log(error);
+            }
+          }
+          getTotalData();
+          
+              
+          // store local data of logged user with the token
+          localStorage.setItem('logged', parsed.access_token);
+          token = parsed.access_token;        
+          logged = true;
+          // clear the hash param with pushState
+          // window.history.pushState({},document.title, "/", '');
+          setTimeout(() => {
+            window.location.href = '/';      
+          }, 1000);
+
       }
+
+      }else if(localStorage.getItem('logged')){
+        token = localStorage.getItem('logged');
+        logged = true;
+      }else{
+        console.log('not logged');
+        logged = false;
     }
-    getUserData();
-    // store local data of logged user with the token
-    localStorage.setItem('logged', parsed.access_token);
-    token = parsed.access_token;
-    logged = true;
-    // clear the hash param with pushState
-    // window.history.pushState({},document.title, "/", '');
-    setTimeout(() => {
-      window.location.href = '/';      
-    }, 750);
-  }
-}else if(localStorage.getItem('logged')){
-  token = localStorage.getItem('logged');
-  logged = true;
-}else{
-  console.log('not logged');
-  logged = false;
-}
   ReactDOM.render(
   <React.StrictMode>
      <Router>

@@ -38,16 +38,17 @@ const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, stre
                     alertbox.removeChild(alertBtn);
                 }, 2000);
                 
-                getFollows(dataJ.data[0].id);
 
                 setStreams(streams.map((item) => {
                     if(item.id === stream.id){
                         return {
-                            ...item, checkstats: !item.checkstats, checkfollows: !item.checkfollows, fullstats: JSON.parse(json), followers: JSON.parse(localStorage.getItem('followers'))
+                            ...item, checkstats: !item.checkstats, checkfollows: !item.checkfollows, fullstats: JSON.parse(json), followers: item.followers
                         }
                     }
                 return item;
                 }))
+                
+                getFollows(dataJ.data[0].id,JSON.parse(json));
 
 
             } catch (error) {
@@ -56,9 +57,9 @@ const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, stre
             alertBtn.innerText = 'Stream data loaded...';
         }
             
-    const getFollows = async (x) => {
+    const getFollows = async (a,b) => {
         try {
-            const response = await axios.get(`https://api.twitch.tv/helix/users/follows?to_id=${x}`, {
+            const response = await axios.get(`https://api.twitch.tv/helix/users/follows?to_id=${a}`, {
               headers: {
                   'Authorization' : `Bearer ${localStorage.getItem('token') ? localStorage.getItem('token') : newToken }`,
                   'Client-ID' : '3ygw3aha6vfzkwh6lw0nlyhrdhs8bs',
@@ -66,13 +67,27 @@ const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, stre
             }
           });        
             localStorage.setItem('followers', response.data.total);
+
+            setStreams(streams.map((item) => {
+                if(item.id === stream.id){
+                    return {
+                        ...item,fullstats: b, checkstats: !item.checkstats, checkfollows: !item.checkfollows, followers: response.data.total
+                    }
+                }
+            return item;
+            }))
+
         } catch (error) {
             console.log('username invalid or something went wrong...');
         
-    }
-}
+            }
+        }
+
+        const checkIfLive = async() => {
+            return console.log('hola');
+        }
     return(
-        <div className="d-flex flex-column">
+        <div className="d-flex">
             <div className="todo">
             {stream.checkstats && stream.checkfollows ? 
             <Stats stream={stream} followers={stream.followers}/>
@@ -82,6 +97,7 @@ const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, stre
                 <button onClick={checkStream} className={`${stream.checkstats ? "complete-btn" : "complete-btn text-white"}`} disabled={`${stream.checkstats ? "disabled" : ''}`}><i className="fas fa-chart-bar"></i></button>
             </div>
             }          
+            <button onClick={checkIfLive} className="trash-btn"><i className="fas fa-eye"></i></button>            
             <button onClick={deleteStream} className="trash-btn"><i className="fas fa-trash"></i></button>            
             </div>
         </div>
