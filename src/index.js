@@ -46,8 +46,13 @@ let token = '';
               
           // store local data of logged user with the token
           localStorage.setItem('logged', parsed.access_token);
+          if(localStorage.getItem('logged')){
           token = parsed.access_token;        
           logged = true;
+          }else{
+          token = parsed.access_token;        
+          logged = true;
+          }
           // clear the hash param with pushState
           // window.history.pushState({},document.title, "/", '');
           setTimeout(() => {

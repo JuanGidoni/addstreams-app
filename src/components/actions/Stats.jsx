@@ -2,11 +2,18 @@ import React from 'react'
 import Verified from '../../images/verified.png';
 import Normal from '../../images/normal.png';
 
-export default function Stats({stream, followers}) {
+export default function Stats({stream, followers, live, counterLive}) {
 
     // Function to capitalize first letter
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    function numberWithCommas(x) {
+        if(x){
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }else{
+            return x;
+        }
     }
 
     return (
@@ -31,11 +38,15 @@ export default function Stats({stream, followers}) {
                 </div>
                 <div className="d-flex flex-row align-items-center justify-content-center">
                 <p className="viewers-title p-0 m-0 mr-2"><i className="fas fa-eye"></i></p>
-                <p className="viewersCount p-0 m-0"> {`${stream.fullstats.data[0].view_count}`}</p>
+                <p className="viewersCount p-0 m-0"> {`${numberWithCommas(stream.fullstats.data[0].view_count)}`}</p>
                 </div>
                 <div className="d-flex flex-row align-items-center justify-content-center">
                 <p className="viewers-title p-0 m-0 mr-2"><i className="fas fa-user"></i></p>
-                <p className="viewersCount p-0 m-0"> {followers}</p>
+                <p className="viewersCount p-0 m-0"> {numberWithCommas(followers)}</p>
+                </div>
+                <div className="d-flex flex-row align-items-center justify-content-center">
+                <p className="viewers-title p-0 m-0 mr-2"><i className={`fas fa-circle ${counterLive === 0 ? 'text-muted' : 'text-danger'}`}></i></p>
+                <p className="viewersCount p-0 m-0"> {counterLive === 0 ? 'Offline' : numberWithCommas(counterLive)}</p>
                 </div>
             </div>
         </div>

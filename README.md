@@ -27,5 +27,8 @@ Check if they are online or not. And more functionalities.
 ----- 0.31
 
 * [x] Fixes an error when total followers don't show.
-* [x] Coming soon, check if a streamer is live.
+* [x] _Coming soon, check if a streamer is live._
 
+----- 0.4
+
+* [x] Now when you check for stats, you get if the streamer is live or not (and the viewers count)

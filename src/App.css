@@ -216,10 +216,6 @@ a {
 }
 
 .todo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width:100%;
 }
 
 .todo-list {
