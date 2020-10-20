@@ -75,7 +75,7 @@ let token = '';
         <Switch>
           
         <Route path="/login" component={() => { window.location.href = 
-            'https://id.twitch.tv/oauth2/authorize?client_id=3ygw3aha6vfzkwh6lw0nlyhrdhs8bs&redirect_uri=http://localhost:3000/&response_type=token%20id_token&scope=openid&claims=claims={"id_token":{"email":null,"email_verified":null},"userinfo":{"picture":null}}'
+            'https://id.twitch.tv/oauth2/authorize?client_id=3ygw3aha6vfzkwh6lw0nlyhrdhs8bs&redirect_uri=https://addstreams.netlify.app/&response_type=token%20id_token&scope=openid&claims=claims={"id_token":{"email":null,"email_verified":null},"userinfo":{"picture":null}}'
                 ; return null;}}/>
                 { 
           logged ? 
