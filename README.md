@@ -5,6 +5,8 @@ Check if they are online or not. And more functionalities.
 
 (Proyect build base from https://github.com/JuanGidoni/react-todo)
 
+Public test[https://addstreams.netlify.app/]
+
 ## test on your localhost
 
 `npm install`
