@@ -3,6 +3,8 @@
 In this React Web App, you can add streamers to your list and check their information.
 Check if they are online or not. And more functionalities.
 
+(Proyect build base from https://github.com/JuanGidoni/react-todo)
+
 ## test on your localhost
 
 `npm install`
