@@ -19,7 +19,8 @@ function App({logged, token}) {
   const [newToken, setNewToken] = useState(token);
   const [userName, setUserName] = useState('');
   const [id, setId] = useState('');
-
+  const [totalF, setTotalF] = useState(0)
+  const [totalV, setTotalV] = useState(0)
 
     // RUN ONCE 
     useEffect(() => {
@@ -85,6 +86,11 @@ function App({logged, token}) {
     }else {
       let streamLocal = JSON.parse(localStorage.getItem('streams', JSON.stringify(streams)));
       setStreams(streamLocal);
+      let followersLocal = JSON.parse(localStorage.getItem('totalFollowers', JSON.stringify(totalF)));
+      setTotalF(followersLocal)
+      
+      let viewsLocal = JSON.parse(localStorage.getItem('totalViews', JSON.stringify(totalV)));
+      setTotalV(viewsLocal)
     }
   }
         return (
@@ -101,6 +107,8 @@ function App({logged, token}) {
             setStatus={setStatus}
             active={active}
             setActive={setActive}
+            setTotalF={setTotalF}
+            setTotalV={setTotalV}
             />
             </div>
             </div>
@@ -115,10 +123,16 @@ function App({logged, token}) {
             newToken={newToken} 
             idUser={id}
             setIdUser={setId}
+            totalF={totalF}
+            setTotalF={setTotalF}
+            totalV={totalV}
+            setTotalV={setTotalV}
             />
             
             </div>
             </div>
+            Total Followers: {totalF} |
+            Total Live: {totalV}
             <Footer />
             </div>
             );

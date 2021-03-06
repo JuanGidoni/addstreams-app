@@ -9,9 +9,9 @@ Check if they are online or not. And more functionalities.
 
 ## test on your localhost
 
-`npm install`
+`yarn install`
 
-`npm start`
+`yarn start`
 
 ---- 0.1
 
@@ -36,3 +36,7 @@ Check if they are online or not. And more functionalities.
 ----- 0.4
 
 * [x] Now when you check for stats, you get if the streamer is live or not (and the viewers count)
+
+----- 0.5
+
+* [x] Now when you check for stats, a total counter of followers or view fills up.

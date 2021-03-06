@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Form({input, setInput, streams, setStreams, setStatus, active, setActive}) {
+export default function Form({input, setInput, streams, setStreams, setStatus, active, setActive, setTotalV, setTotalF}) {
     
     const inputChange = (e) => {
         setInput(e.target.value);
@@ -60,6 +60,10 @@ export default function Form({input, setInput, streams, setStreams, setStatus, a
         setTimeout(() => {
             alertbox.removeChild(alertBtn);
         }, 2000);
+        localStorage.removeItem('totalViews')
+        localStorage.removeItem('totalFollowers')
+        setTotalV(0)
+        setTotalF(0)
         setStreams([]);
         setStatus('all');
     }

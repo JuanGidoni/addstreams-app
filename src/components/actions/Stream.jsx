@@ -3,7 +3,7 @@ import axios from 'axios';
 import Stats from './Stats';
 import Follows from './Follows';
 
-const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, streamsInfo, newToken, idUser, setIdUser}) => {
+const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, streamsInfo, newToken, idUser, setIdUser, totalF, setTotalF, totalV, setTotalV}) => {
     
     let alertbox = document.getElementById('alert');
     let alertBtn = document.createElement('p');
@@ -44,7 +44,7 @@ const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, stre
                 setStreams(streams.map((item) => {
                     if(item.id === stream.id){
                         return {
-                            ...item, checkstats: !item.checkstats, checkfollows: !item.checkfollows, fullstats: JSON.parse(json), followers: item.followers
+                            ...item, checkstats: !item.checkstats, checkfollows: !item.checkfollows,followers: item.followers, fullstats: JSON.parse(json)
                         }
                     }
                 return item;
@@ -79,6 +79,8 @@ const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, stre
                 }
             return item;
             }))
+            await setTotalF(totalF + response.data.total)
+            localStorage.setItem('totalFollowers', totalF+response.data.total)
 
         } catch (error) {
             console.log('username invalid or something went wrong...');
@@ -103,8 +105,7 @@ const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, stre
 
                 if(dataL.data[0].type === 'live'){
                     setcounterLive(dataL.data[0].viewer_count);
-                    console.log(dataL.data[0].type);
-                    console.log('t-'+ dataL.data);
+                    console.log(dataL.data[0].viewer_count);
                     setLive(true);
                 setStreams(streams.map((item) => {
                     if(item.id === stream.id){
@@ -114,6 +115,9 @@ const Stream = ({username, stream, streams, setStreams, id, setStreamsInfo, stre
                     }
                 return item
                 }))
+                
+            await setTotalV(totalV + dataL.data[0].viewer_count)
+            localStorage.setItem('totalViews', totalV+dataL.data[0].viewer_count)
 
                 }else{
                     setStreams(streams.map((item) => {

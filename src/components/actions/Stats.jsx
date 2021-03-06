@@ -20,7 +20,7 @@ export default function Stats({stream, followers, live, counterLive}) {
         <div>
             <div className="stats">
                 <div className="d-flex flex-row align-items-center justify-content-center user-data">
-                <img className="picture" src={`${stream.fullstats.data[0].profile_image_url}`} />
+                <img className="picture" src={`${stream.fullstats.data[0].profile_image_url}`} alt="Avatar" title="Avatar" />
                 <p className="p-0 m-0 ml-2 mr-2"> {`${capitalizeFirstLetter(stream.fullstats.data[0].display_name)}`}</p>
                 <img className={`picture-badge
                 ${stream.fullstats.data[0].broadcaster_type === 'partner' ? 'partner'
@@ -34,7 +34,7 @@ export default function Stats({stream, followers, live, counterLive}) {
                 stream.fullstats.data[0].broadcaster_type === 'affiliate' ? Normal
                 : 
                 Normal
-                } />
+                } alt="avatar" title="avatar" />
                 </div>
                 <div className="d-flex flex-row align-items-center justify-content-center">
                 <p className="viewers-title p-0 m-0 mr-2"><i className="fas fa-eye"></i></p>
